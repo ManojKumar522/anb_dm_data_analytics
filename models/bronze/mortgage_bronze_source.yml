@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: mortgage_src
+    database: "{{ env_var('DBT_MCD_DATABASE') | as_text }}"
+    schema: "{{ env_var('DBT_BRONZE_SCHEMA') | as_text }}"
+    tables:
+      - name: mortgage_payment_raw
+        description: "Raw mortgage payments loaded from external sources (API, files, etc.) with JSON payload."
+        columns:
+          - name: payment_id
+            description: "Unique Payment ID"
+          - name: src_load_ts
+            description: "Timestamp when record was loaded"
+          - name: raw_json
+            description: "JSON column with original payment record"
+          - name: batch_id
+          - name: etl_load_ts
+          - name: etl_updt_ts
+      - name: mortgage_application_raw
+        description: "Raw mortgage applications loaded from external sources (API, files, etc.) with JSON payload."
+        columns:
+          - name: application_id
+            description: "Unique Application ID"
+          - name: src_load_ts
+            description: "Timestamp when record was loaded"
+          - name: raw_json
+            description: "JSON column with original application record"
+          - name: batch_id
+          - name: etl_load_ts
+          - name: etl_updt_ts
