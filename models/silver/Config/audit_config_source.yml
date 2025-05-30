@@ -3,11 +3,11 @@ version: 2
 sources:
   - name: dbt_config
     database: "{{ env_var('DBT_MCD_DATABASE') | as_text }}"
-    schema: DQT_MONITOR
+    schema: DBT_MONITOR
     tables:
       - name: dbt_model_audit_t
         description: "This is a config and audit table to fetch audit details"
-      - name: dby_batch_audit_t
+      - name: dbt_batch_audit_t
         description: "This is a audit table to fetch batchid"
 
   - name: dbt_audit

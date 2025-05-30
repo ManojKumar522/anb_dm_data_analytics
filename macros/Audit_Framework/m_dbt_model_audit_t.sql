@@ -3,7 +3,7 @@
     {%- set full_tgt_tbl_list = [] -%}
     {# Formats the Model list and then prepares the model string, using the model list #}
     {%- for model_id in model_id_list -%}
-        {% set model_id_full = fl_utils.m_get_tgt_tbl_by_using_model(modelgrp, model_id) %}
+        {% set model_id_full = m_get_tgt_tbl_by_using_model(modelgrp, model_id) %}
         {% do full_tgt_tbl_list.append("'" ~ model_id_full ~ "'") %}
     {%- endfor -%}
     {%- set full_model_id_list = full_tgt_tbl_list -%}

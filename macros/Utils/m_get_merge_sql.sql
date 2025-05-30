@@ -32,9 +32,9 @@
     merge into {{ target }} as DBT_INTERNAL_DEST
         using {{ source }} as DBT_INTERNAL_SOURCE
         on {{ predicates | join(' and ') }}
-        {{ fl_utils.add_merge_update_condition() }}
+        {{ add_merge_update_condition() }}
     {% if unique_key %}
-    when matched {{ fl_utils.add_merge_update_condition() }} then update set
+    when matched {{ add_merge_update_condition() }} then update set
         {% for column_name in update_columns -%}
             {{ column_name }} = DBT_INTERNAL_SOURCE.{{ column_name }}
             {%- if not loop.last %}, {%- endif %}

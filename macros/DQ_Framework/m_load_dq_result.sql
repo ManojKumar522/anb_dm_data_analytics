@@ -3,7 +3,7 @@
     {{ log("Project Name : " ~ v_project_name, info=true) }}
     {{ log("Batch Id: " ~ v_batch_id, info=true) }}
 
-    {% set custom_rule_mapping = fl_utils.dq_custom_rules() %}
+    {% set custom_rule_mapping = dq_custom_rules() %}
 
     {% call statement('fetch_rule_exp', fetch_result=true) %}
     with

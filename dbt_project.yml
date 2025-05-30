@@ -13,8 +13,8 @@ snapshot-paths: ["snapshots"]
 
 vars:
   p_full_model_name: ALL
-  p_manual_batch_id: 99991231
-  p_pipeline_name: dom
+  p_manual_batch_id: 99991231010101
+  p_pipeline_name: mcd
 
 flags:
   enable_iceberg_materializations: True

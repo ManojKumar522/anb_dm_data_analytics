@@ -1,0 +1,8 @@
+version: 2
+ 
+models:
+  - name: mortgage_payment_summary_t
+    description: "This model contains Gold Mortgage Application Summary"
+    config:
+      tags: ["mcd_mortgage_gold_tag", "mcd_mortgage_silver_gold_tag"]
+ 
