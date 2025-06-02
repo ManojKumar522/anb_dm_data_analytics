@@ -1,0 +1,119 @@
+version: 2
+
+sources:
+  - name: borrower_src
+    database: "{{ env_var('DBT_MCD_DATABASE') | as_text }}"
+    schema: "{{ env_var('DBT_BRONZE_SCHEMA') | as_text }}"
+    tables:
+      - name: srvalt1
+        description: "borrower core information."
+        columns:
+          - name: a1loan
+            description: "loan number"
+          - name: lsbrand
+            description: "brand name"
+          - name: a1seq
+            description: "borrower position number"
+          - name: a1fnam
+          - name: a1mnam
+          - name: a1lnam
+          - name: a1suff
+          - name: a1bdte
+          - name: a1add1
+          - name: a1add2
+          - name: a1city
+          - name: a1zip
+          - name: a1stat
+          - name: a1mcty
+          - name: a1sad1
+          - name: a1sad2
+          - name: a1scit
+          - name: a1szip
+          - name: a1sst
+          - name: a1scty
+          - name: lbebilfgb
+          - name: lbccontact
+          - name: a1soc
+          - name: a1gen
+          - name: a1mast
+          - name: a1afcd
+          - name: a1lngi
+          - name: a1fico
+          - name: load_dttm
+            description: "timestamp when record was loaded"
+      - name: creditdataacc
+        description: "credit data for borrowers."
+        columns:
+          - name: loan_number
+          - name: asofdate
+          - name: ficoscore
+          - name: ssn
+          - name: endeffectivedate
+          - name: load_dttm
+      - name: lsborr00
+        description: "additional borrower info."
+        columns:
+          - name: lbln_n
+          - name: lbbor_n
+          - name: lbprvcrd
+          - name: lbexternid
+          - name: lbpribr
+          - name: load_dttm
+      - name: srvtrw2j2
+        description: "borrower gen codes."
+        columns:
+          - name: j2loan
+          - name: j2seqno
+          - name: j2gencd
+          - name: load_dttm
+      - name: srvalt2
+        description: "borrower alternate contact info."
+        columns:
+          - name: a2loan
+          - name: a2seq
+          - name: a2prct
+          - name: a2scct
+          - name: load_dttm
+      - name: lsloan00
+        description: "loan core info."
+        columns:
+          - name: lsln_n
+          - name: lsbrand
+          - name: load_dttm
+      - name: srvcoli
+        description: "collections/fraud/poa data."
+        columns:
+          - name: loan_nbr_num
+          - name: collection_code
+          - name: load_dttm
+      - name: loanvehbor
+        description: "loan-vehicle-borrower associations."
+        columns:
+          - name: loan#
+          - name: borrseq
+          - name: custdscflg
+          - name: load_dttm
+      - name: addr
+        description: "address info for borrowers."
+        columns:
+          - name: addr_id
+          - name: addr_line_1_txt
+          - name: addr_line_2_txt
+          - name: city_nm
+          - name: pstl_cd
+          - name: state_or_prov_cd
+          - name: cntry_cd
+          - name: last_modified
+      - name: loan_nbr_cross_ref
+        description: "loan number cross references."
+        columns:
+          - name: loan_nbr
+          - name: cross_ref_id
+          - name: src_load_ts
+      - name: borr
+        description: "existing borrower target table for upserts/lookup."
+        columns:
+          - name: loan_key
+          - name: borr_pstn_nbr
+          - name: sor_cd
+          - name: aud_upd_dttm

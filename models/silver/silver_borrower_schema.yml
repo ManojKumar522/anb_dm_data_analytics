@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: borrower_srvalt1_t
+    description: "Silver borrower core table"
+    config:
+      tags: [silver_borrower_load_tag]
+
+  - name: borrower_creditdataacc_t
+    description: "Silver borrower credit data"
+    config:
+      tags: [silver_borrower_load_tag]
+
+  - name: borrower_lsborr00_t
+    description: "Silver additional borrower info"
+    config:
+      tags: [silver_borrower_load_tag]
+
+  - name: borrower_srvtrw2j2_t
+    description: "Silver borrower gen code info"
+    config:
+      tags: [silver_borrower_load_tag]
+
+  - name: borrower_srvalt2_t
+    description: "Silver borrower alternate contact info"
+    config:
+      tags: [silver_borrower_load_tag]
+
+  - name: borrower_lsloan00_t
+    description: "Silver loan core info"
+    config:
+      tags: [silver_borrower_load_tag]
+
+  - name: borrower_srvcoli_t
+    description: "Silver collections/fraud/POA data"
+    config:
+      tags: [silver_borrower_load_tag]
+
+  - name: borrower_loanvehbor_t
+    description: "Silver loan-vehicle-borrower association"
+    config:
+      tags: [silver_borrower_load_tag]
+
+  - name: borrower_addr_t
+    description: "Silver address info for borrowers"
+    config:
+      tags: [silver_borrower_load_tag]
+
+  - name: borrower_loan_nbr_cross_ref_t
+    description: "Silver loan number cross reference"
+    config:
+      tags: [silver_borrower_load_tag]
+
+  - name: borrower_borr_t
+    description: "Silver existing borrower upsert/lookup"
+    config:
+      tags: [silver_borrower_load_tag]
