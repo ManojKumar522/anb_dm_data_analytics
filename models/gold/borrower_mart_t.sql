@@ -65,8 +65,8 @@ with base as (
         'etl-update' as ods_update_by_nm,
         current_timestamp() as ods_update_dttm,
         null as truncate_flag,
-        bo.lbdisabil as dsbl_id,
-        bo.lbcrdrpt as cr_rpt,
+        null as dsbl_id,
+        null as cr_rpt,
         s2.a2prct as prim_cntct,
         s2.a2scct as scnd_cntct,
         case
@@ -83,9 +83,6 @@ with base as (
         coalesce(bo.lbpribr, 0) as prim_borr,
         t.j2gencd as gen_cd,
         v.custdscflg as cust_disc_flg,
-        a1.batch_id,
-        a1.etl_load_ts,
-        a1.etl_updt_ts,
         a1.load_dttm,
         a1.load_dttm as src_load_ts
     from {{ ref('borrower_srvalt1_t') }} a1
@@ -102,7 +99,7 @@ with base as (
     left join {{ ref('borrower_srvcoli_t') }} col
         on col.loan_nbr_num = a1.a1loan
     left join {{ ref('borrower_loanvehbor_t') }} v
-        on a1.a1seq = v.borrseq and a1.a1loan = v."loan#"
+        on a1.a1seq = v.borrseq and a1.a1loan = v.loan
     where a1.a1seq <> 9
         and (
             a1.load_dttm > {{ v_inc_load_ts }}
@@ -111,12 +108,7 @@ with base as (
             or s2.load_dttm > {{ v_inc_load_ts }}
             or col.load_dttm > {{ v_inc_load_ts }}
         )
-    group by
-        a1.a1loan, l.lsbrand, a1.a1seq, a1.a1fnam, a1.a1mnam, a1.a1lnam, a1.a1suff, a1.a1bdte, c.asofdate, c.ficoscore,
-        a1.a1add1, a1.a1add2, a1.a1city, a1.a1zip, a1.a1stat, a1.a1mcty, a1.a1sad1, a1.a1sad2, a1.a1scit, a1.a1szip, a1.a1sst,
-        a1.a1scty, a1.lbebilfgb, a1.lbccontact, a1.a1soc, a1.a1gen, a1.a1mast, a1.a1afcd, a1.a1lngi, a1.a1fico,
-        bo.lbdisabil, bo.lbcrdrpt, s2.a2prct, s2.a2scct, a1.a1seq, bo.lbprvcrd, bo.lbexternid, bo.lbpribr, t.j2gencd, v.custdscflg,
-        a1.batch_id, a1.etl_load_ts, a1.etl_updt_ts, a1.load_dttm
+    group by all
 )
 
 , with_hash as (
@@ -124,7 +116,7 @@ with base as (
         *,
         {{ m_prep_hash_key_from_column_list(target_key_column_list) }} as hash_sk,
         {{ m_prep_hash_key_from_column_list(target_context_typ2_column_list) }} as hash_seq_num
-    from base
+    from base src
 )
 
 select

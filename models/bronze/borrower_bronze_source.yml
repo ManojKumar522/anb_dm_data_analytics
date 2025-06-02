@@ -89,7 +89,7 @@ sources:
       - name: loanvehbor
         description: "loan-vehicle-borrower associations."
         columns:
-          - name: loan#
+          - name: loan
           - name: borrseq
           - name: custdscflg
           - name: load_dttm

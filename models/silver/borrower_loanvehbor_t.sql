@@ -7,7 +7,7 @@
     config(
         materialized = "incremental",
         strategy = "merge",
-        unique_key = ["loan#", "borrseq"],
+        unique_key = ["loan", "borrseq"],
         merge_exclude_columns = ["etl_load_ts"],
         post_hook = [
             "{{ m_upd_post_load_attrib_vals_for_model_record_in_dbt_model_audit(var('p_pipeline_name'), 'silver_mcd', this, m_get_batch_id(var('p_pipeline_name')), 'load_dttm') }}"
@@ -16,7 +16,7 @@
 }}
 
 select
-    "loan#",
+    loan,
     borrseq,
     custdscflg,
     load_dttm,
