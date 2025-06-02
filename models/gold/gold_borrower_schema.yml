@@ -4,4 +4,4 @@ models:
   - name: borrower_mart_t
     description: "Gold borrower Mart table"
     config:
-      tags: [gold_borrower_load_tag]
+      tags: [mcd_borrower_gold_tag]
