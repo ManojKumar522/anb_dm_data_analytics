@@ -103,10 +103,6 @@ with base as (
     where a1.a1seq <> 9
         and (
             a1.load_dttm > {{ v_inc_load_ts }}
-            or c.load_dttm > {{ v_inc_load_ts }}
-            or bo.load_dttm > {{ v_inc_load_ts }}
-            or s2.load_dttm > {{ v_inc_load_ts }}
-            or col.load_dttm > {{ v_inc_load_ts }}
         )
     group by all
 )
