@@ -36,4 +36,6 @@ models:
       +database: "{{ env_var('DBT_MCD_DATABASE')| as_text }}"
       +schema: "{{ env_var('DBT_SILVER_SCHEMA') | as_text }}"
     gold:
-   Q
+      +materialized: table
+      +database: "{{ env_var('DBT_MCD_DATABASE')| as_text }}"
+      +schema: "{{ env_var('DBT_GOLD_SCHEMA') | as_text }}"
